@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "VietPhish Lens (PoC)",
+  "version": "0.1.0",
+  "description": "PoC phát hiện trang giả mạo ngân hàng và cơ quan nhà nước Việt Nam.",
+  "permissions": ["tabs", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    { "matches": ["http://*/*", "https://*/*"], "js": ["content.js"], "run_at": "document_idle" }
+  ],
+  "action": { "default_title": "VietPhish Lens" }
+}

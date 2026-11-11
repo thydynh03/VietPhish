@@ -1,0 +1,17 @@
+{
+  "name": "vietphish-poc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Proof of concept VietPhish Lens - KHÔNG dùng làm code dự thi",
+  "scripts": {
+    "server": "node server/server.js",
+    "demo-sites": "node demo-sites/serve.js",
+    "eval": "node eval/run_eval.js",
+    "sync-domains": "node -e \"require('fs').copyFileSync('shared/official_domains.json','extension/official_domains.json')\""
+  },
+  "dependencies": {
+    "fastest-levenshtein": "^1.0.16",
+    "tldts": "^7.0.0"
+  }
+}

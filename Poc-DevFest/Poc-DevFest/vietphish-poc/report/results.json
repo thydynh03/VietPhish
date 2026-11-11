@@ -1,0 +1,133 @@
+{
+  "startedAt": "2026-10-10T15:22:30.559Z",
+  "api": [
+    {
+      "name": "Trang thật vietcombank.com.vn",
+      "url": "https://vietcombank.com.vn/",
+      "mode": "full",
+      "verdict": "SAFE",
+      "score": 0,
+      "reasons": [
+        "Tên miền vietcombank.com.vn nằm trong danh sách chính thức."
+      ]
+    },
+    {
+      "name": "VCB giả, chỉ heuristic (no_vision)",
+      "url": "http://vietcombank-xacthuc.top:8080/",
+      "mode": "no_vision",
+      "verdict": "SUSPICIOUS",
+      "score": 60,
+      "reasons": [
+        "Tên miền vietcombank-xacthuc.top chứa tên Vietcombank nhưng không thuộc Vietcombank.",
+        "Đuôi .top thường bị lợi dụng trong lừa đảo.",
+        "Trang không dùng kết nối bảo mật HTTPS.",
+        "Dữ liệu bạn nhập sẽ được gửi sang máy chủ khác (collector.example-attacker.xyz)."
+      ]
+    },
+    {
+      "name": "VCB giả, đầy đủ",
+      "url": "http://vietcombank-xacthuc.top:8080/",
+      "mode": "full",
+      "verdict": "DANGER",
+      "score": 100,
+      "reasons": [
+        "Trang này trông giống Vietcombank nhưng địa chỉ vietcombank-xacthuc.top không phải tên miền chính thức (vietcombank.com.vn).",
+        "Trang yêu cầu mật khẩu đăng nhập Vietcombank trên một tên miền lạ.",
+        "Tên miền vietcombank-xacthuc.top chứa tên Vietcombank nhưng không thuộc Vietcombank.",
+        "Đuôi .top thường bị lợi dụng trong lừa đảo.",
+        "Trang không dùng kết nối bảo mật HTTPS.",
+        "Dữ liệu bạn nhập sẽ được gửi sang máy chủ khác (collector.example-attacker.xyz)."
+      ]
+    },
+    {
+      "name": "VNeID giả đòi OTP",
+      "url": "http://vneid-capnhat.cc:8080/",
+      "mode": "full",
+      "verdict": "DANGER",
+      "score": 100,
+      "reasons": [
+        "Trang này trông giống VNeID nhưng địa chỉ vneid-capnhat.cc không phải tên miền chính thức (vneid.gov.vn).",
+        "Trang yêu cầu nhập mã OTP. Ngân hàng và cơ quan nhà nước không bao giờ hỏi OTP trên trang lạ.",
+        "VNeID chỉ xác thực qua ứng dụng chính thức và vneid.gov.vn, không qua website lạ.",
+        "Trang dùng lời lẽ hối thúc (khóa tài khoản, cập nhật gấp…).",
+        "Tên miền vneid-capnhat.cc chứa tên VNeID nhưng không thuộc VNeID.",
+        "Đuôi .cc thường bị lợi dụng trong lừa đảo.",
+        "Trang không dùng kết nối bảo mật HTTPS."
+      ]
+    },
+    {
+      "name": "Bài báo nhắc Vietcombank",
+      "url": "http://tintuc-demo.vn:8080/",
+      "mode": "full",
+      "verdict": "SAFE",
+      "score": 19,
+      "reasons": [
+        "Trang này trông giống Vietcombank nhưng địa chỉ tintuc-demo.vn không phải tên miền chính thức (vietcombank.com.vn).",
+        "Trang không dùng kết nối bảo mật HTTPS."
+      ]
+    },
+    {
+      "name": "Domain trung lập giả giao diện VCB",
+      "url": "http://xacthuc-taikhoan.com:8080/",
+      "mode": "full",
+      "verdict": "DANGER",
+      "score": 85,
+      "reasons": [
+        "Trang này trông giống Vietcombank nhưng địa chỉ xacthuc-taikhoan.com không phải tên miền chính thức (vietcombank.com.vn).",
+        "Trang yêu cầu mật khẩu đăng nhập Vietcombank trên một tên miền lạ.",
+        "Trang không dùng kết nối bảo mật HTTPS."
+      ]
+    }
+  ],
+  "browser": [
+    {
+      "file": "00-vcb-that",
+      "url": "https://vietcombank.com.vn/",
+      "expectOverlay": false,
+      "overlay": false,
+      "pass": null,
+      "ms": null,
+      "loadError": "net::ERR_HTTP2_PROTOCOL_ERROR at https://vietcombank.com.vn/",
+      "note": "Không kết luận được: trang thật từ chối trình duyệt tự động (ERR_HTTP2_PROTOCOL_ERROR)"
+    },
+    {
+      "file": "01-vcb-gia",
+      "url": "http://vietcombank-xacthuc.top:8080/",
+      "expectOverlay": true,
+      "overlay": true,
+      "pass": true,
+      "ms": 912,
+      "loadError": null
+    },
+    {
+      "file": "02-vneid-gia",
+      "url": "http://vneid-capnhat.cc:8080/",
+      "expectOverlay": true,
+      "overlay": true,
+      "pass": true,
+      "ms": 469,
+      "loadError": null
+    },
+    {
+      "file": "03-domain-trung-lap",
+      "url": "http://xacthuc-taikhoan.com:8080/",
+      "expectOverlay": true,
+      "overlay": true,
+      "pass": true,
+      "ms": 444,
+      "loadError": null
+    },
+    {
+      "file": "04-bai-bao",
+      "url": "http://tintuc-demo.vn:8080/",
+      "expectOverlay": false,
+      "overlay": false,
+      "pass": true,
+      "ms": null,
+      "loadError": null
+    }
+  ],
+  "serverLog": "VietPhish PoC server: http://localhost:8787\nGemini: MOCK (đoán từ tiêu đề)\nSafe Browsing: tắt (thiếu SAFE_BROWSING_KEY)\n[SAFE 0] https://vietcombank.com.vn/ (không ảnh) { whitelist: true } 1ms\n[SUSPICIOUS 60] http://vietcombank-xacthuc.top:8080/ (không ảnh) { whitelist: false, safeBrowsing: 'skipped', heuristics: 60 } 1ms\n[DANGER 100] http://vietcombank-xacthuc.top:8080/ (ảnh 0KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 60 } 1ms\n[DANGER 100] http://vneid-capnhat.cc:8080/ (ảnh 0KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 50 } 0ms\n[SAFE 19] http://tintuc-demo.vn:8080/ (ảnh 0KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 10 } 0ms\n[DANGER 85] http://xacthuc-taikhoan.com:8080/ (ảnh 0KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 10 } 0ms\nVietPhish PoC server: http://localhost:8787\nGemini: MOCK (đoán từ tiêu đề)\nSafe Browsing: tắt (thiếu SAFE_BROWSING_KEY)\n[DANGER 100] http://vietcombank-xacthuc.top:8080/ (ảnh 19KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 60 } 3ms\n[DANGER 100] http://vneid-capnhat.cc:8080/ (ảnh 22KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 50 } 1ms\n[DANGER 85] http://xacthuc-taikhoan.com:8080/ (ảnh 19KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 20 } 0ms\n[SAFE 19] http://tintuc-demo.vn:8080/ (không ảnh) { whitelist: false, safeBrowsing: 'skipped', heuristics: 10 } 0ms\n",
+  "evalOutput": "✓  0  legit  https://vietcombank.com.vn/vi-VN/Ca-nhan  [WHITELIST]\n✓  0  legit  https://vcbdigibank.vietcombank.com.vn/login  [WHITELIST]\n✓  0  legit  https://www.bidv.com.vn/vn/ca-nhan  [WHITELIST]\n✓  0  legit  https://ebanking.techcombank.com.vn/  [WHITELIST]\n✓  0  legit  https://www.techcombank.com/  [WHITELIST]\n✓  0  legit  https://vneid.gov.vn/  [WHITELIST]\n✓  0  legit  https://dichvucong.gov.vn/p/home/dvc-trang-chu.html  [WHITELIST]\n✓  0  legit  https://thuedientu.gdt.gov.vn/  [WHITELIST]\n✓  0  legit  https://momo.vn/  [WHITELIST]\n✓  0  legit  https://vnexpress.net/ngan-hang-vietcombank-tang-lai-suat  [-]\n✓  0  legit  https://shopee.vn/  [-]\n✓  0  legit  https://www.google.com/  [-]\n✓  0  legit  https://cafef.vn/bidv-bao-lai-quy-3.chn  [-]\n✓  0  legit  https://github.com/  [-]\n✓  0  legit  https://tuoitre.vn/canh-bao-gia-mao-vneid.htm  [-]\n✓ 40  phish  https://vietcornbank.com.vn/login  [LOOKALIKE_DOMAIN]\n✓ 40  phish  https://vietcombank-xacthuc.top/login  [BRAND_KEYWORD, SUSPICIOUS_TLD]\n✓ 55  phish  https://vietcombank.com.vn.secure-login.xyz/  [SUBDOMAIN_TRICK, SUSPICIOUS_TLD]\n✓ 40  phish  https://xn--vietcmbank-ivi.com/  [HOMOGLYPH]\n✓ 40  phish  https://bidv-hotro.cc/otp  [BRAND_KEYWORD, SUSPICIOUS_TLD]\n✓ 40  phish  https://vneid-capnhat.cc/  [BRAND_KEYWORD, SUSPICIOUS_TLD]\n✓ 40  phish  https://dichvucong-gov.top/  [BRAND_KEYWORD, SUSPICIOUS_TLD]\n✓ 40  phish  https://techcornbank.com/  [LOOKALIKE_DOMAIN]\n✓ 40  phish  https://agribank-vn.online/  [BRAND_KEYWORD, SUSPICIOUS_TLD]\n✓ 40  phish  https://momo-nhanqua.vip/  [BRAND_KEYWORD, SUSPICIOUS_TLD]\n✓ 40  phish  https://vietinbannk.vn/  [LOOKALIKE_DOMAIN]\n✗  0  phish  https://hoan-thue-2026.com/thuedientu  [-]\n✗  0  phish  https://xacthuc-taikhoan.com/  [-]\n\nCấu hình: chỉ heuristic tên miền (không Safe Browsing, không Gemini)\nMẫu: 28 (phish 13, thật 15) · ngưỡng 40\nTP 11 · FP 0 · TN 15 · FN 2\nPrecision 100.0% · Recall 84.6% · Tỷ lệ báo nhầm 0.0%\n\nLưu ý: dữ liệu mẫu nhỏ và do PoC tự tạo; số liệu thật phải đo trên PhishVN + bộ ảnh có nhãn.\n",
+  "serverLogDuringBrowser": "[DANGER 100] http://vietcombank-xacthuc.top:8080/ (ảnh 19KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 60 } 3ms\n[DANGER 100] http://vneid-capnhat.cc:8080/ (ảnh 22KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 50 } 1ms\n[DANGER 85] http://xacthuc-taikhoan.com:8080/ (ảnh 19KB) { whitelist: false, safeBrowsing: 'skipped', heuristics: 20 } 0ms\n[SAFE 19] http://tintuc-demo.vn:8080/ (không ảnh) { whitelist: false, safeBrowsing: 'skipped', heuristics: 10 } 0ms\n"
+}
