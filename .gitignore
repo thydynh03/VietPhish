@@ -1,8 +1,11 @@
 node_modules/
-*.zip
 .env
 .env.*
+*.env.yaml
+eval/results/
 *.log
 .DS_Store
 Thumbs.db
+*.mp4
+*.zip
 ~$*
