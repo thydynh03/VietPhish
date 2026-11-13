@@ -53,7 +53,9 @@ Nếu dùng IDE Antigravity, mở thư mục `D:\vietphish-lens`, tạo một cu
 | B6 | `.agent/workflows/b6-deploy-cloud-run.md` | B chạy lệnh, agent chỉ giúp đọc lỗi và tra bảng, không tự chạy lệnh deploy |
 | A1 | `.agent/workflows/a1-content-overlay.md` | |
 | A2 | `.agent/workflows/a2-background.md` | |
-| A3 | `.agent/workflows/a3-popup-offline.md` | Tùy chọn, bị cắt đầu tiên |
+| A3 | `.agent/workflows/a3-popup-offline.md` | Tùy chọn, bị cắt đầu tiên. Làm sau A5 |
+| A4 | `.agent/workflows/a4-khoa-o-nhap.md` | **C làm**, 09:20–09:55, chỉ sửa `extension/content.js` |
+| A5 | `.agent/workflows/a5-che-do-co-ban.md` | A làm, 09:35–10:00, ngay sau A2, trước A3 |
 | C2 | `.agent/workflows/c2-eval.md` | |
 
 Ba bước `00`, C1 và C3 do người tự làm, không giao cho agent.
@@ -139,6 +141,8 @@ Sau 2 lần sửa vẫn chưa đạt thì chọn một trong hai đường:
 Không nhờ agent sửa lần thứ 3 trong cùng phiên. Phiên đó đã rối, càng sửa càng lệch.
 
 ## Lịch theo giờ
+
+> **Cập nhật 14/11:** lịch đã sắp lại để thêm A4 và A5 (điểm khác biệt, xem `KHAC-BIET.md`). Bảng giờ đúng nằm ở `docs/CHIA-TASK.md`. Chỗ nào khác bảng dưới đây thì theo `CHIA-TASK.md`.
 
 Lịch này khớp với mục 09 của `KE-HOACH.md`. Cột "Xong khi nào" là tiêu chí nghiệm thu một dòng. Bước nào chưa có con số cụ thể ở đây thì xem mục "Nghiệm thu" trong file bước.
 

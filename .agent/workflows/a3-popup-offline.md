@@ -4,7 +4,7 @@ description: A3 - Popup và chế độ demo offline (extension, TÙY CHỌN)
 
 # A3. Popup và chế độ demo offline
 
-**Người làm:** A. **Thời gian dự kiến:** 30 phút cho agent, cộng 10 phút người kiểm. **Phụ thuộc:** A1, A2 đã xong và đã nghiệm thu. Server chạy được (local hoặc đã deploy) để sinh `demo-cache.json`.
+**Người làm:** A. **Thời gian dự kiến:** 30 phút cho agent, cộng 10 phút người kiểm. **Phụ thuộc:** A1, A2 và A5 đã xong và đã commit (A5 cũng sửa `background.js`, không chạy cùng lúc). Lịch: 10:00–10:40, theo `docs/CHIA-TASK.md`. Server chạy được (local hoặc đã deploy) để sinh `demo-cache.json`.
 
 > **Bước tùy chọn.** Đây là bước bị cắt **đầu tiên** khi thiếu giờ. Luật của đội: đến 09:55 chưa có sản phẩm demo tối thiểu (cả 3 kịch bản chạy với server) thì bỏ hẳn bước này. Overlay đỏ và huy hiệu đã đủ cho video. Không bắt đầu A3 khi A2 chưa nghiệm thu đạt.
 
@@ -285,7 +285,7 @@ Phần này do người làm bằng tay. Chuẩn bị server mock, trang demo v�
 | 5 | Bấm icon, bấm `Báo nhầm` | Nút đổi thành `Đã ghi nhận` và bị mờ |
 | 6 | Bấm icon, tích `Chế độ demo offline`. Bấm Ctrl+C ở cửa sổ server để tắt server. F5 trang `vneid-capnhat.cc` | Vẫn phủ đỏ với 4 lý do VNeID, huy hiệu `✕`. Cửa sổ server đã tắt nên không có log |
 | 7 | Vẫn bật offline, mở `http://tintuc-demo.vn:8080/` | Huy hiệu `✓`, không overlay |
-| 8 | Bỏ tích offline, F5 `vietcombank-xacthuc.top` (server vẫn tắt) | Khoảng 3 giây sau huy hiệu trống. Bấm icon thấy `Chưa kiểm tra` và dòng đỏ `Lỗi: Failed to fetch` |
+| 8 | Bỏ tích offline, F5 `vietcombank-xacthuc.top` (server vẫn tắt) | Có A5: dải vàng "Không kết nối được máy chủ kiểm tra…", huy hiệu `!`. Bấm icon thấy `Đáng ngờ`, `Điểm rủi ro 50/100` và lý do chế độ cơ bản. Mở `xacthuc-taikhoan.com` (không chứa tên ngân hàng) rồi bấm icon thì thấy `Chưa kiểm tra` và dòng đỏ `Lỗi: Failed to fetch` |
 | 9 | Bật lại server, F5 | Phủ đỏ trở lại |
 
 Bước 1, 2, 4, 6, 7, 8 đã chạy thử với bản tham chiếu trong Chrome for Testing 148: popup mở bằng `chrome.action.openPopup()` hiện đúng 6 lý do; `recheck` trả `{ ok: true }` và server nhận thêm một request; offline với server tắt vẫn ra DANGER cho VNeID và SAFE cho trang tin; server tắt và không offline thì lưu `error: "Failed to fetch"` sau khoảng 3 giây.

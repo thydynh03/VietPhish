@@ -22,9 +22,10 @@ git diff pre-event..HEAD --stat      # khối lượng code viết trong ngày t
 | Khung rỗng | `server/src/index.js`, `server/package.json`, `server/package-lock.json` | Chỉ có `GET /health`. Khai 3 dependency `tldts`, `fastest-levenshtein`, `@google/genai` và script `npm test` |
 | Cấu hình | `server/.gcloudignore` | Danh sách file bỏ qua khi upload `server/` lên Cloud Run, đúng 5 dòng. Lệnh deploy B chạy tay trong ngày thi theo `.agent/workflows/b6-deploy-cloud-run.md`, key không vào repo |
 | Cấu hình | `package.json` ở gốc repo, `.gitignore` | Script tắt để chạy server, trang demo và test. `.gitignore` chặn `node_modules`, file `.env`, `*.env.yaml` chứa key, kết quả eval và file video |
+| Thiết kế | `docs/KHAC-BIET.md`, `docs/CHIA-TASK.md` | Kế hoạch điểm khác biệt so với ChongLuaDao và J2TEAM, và bảng chia việc ngày thi. Không có code |
 | Thiết kế | `docs/API.md` | Hợp đồng giữa extension và server |
 | Thiết kế | `docs/KE-HOACH.md` | Kế hoạch của đội |
-| Thiết kế | `docs/NGAY-THI.md`, `AGENTS.md`, 13 file trong `.agent/workflows/` (`00-khoi-dong`, A1 đến A3, B1 đến B6, C1 đến C3) | Lịch ngày thi và đặc tả từng bước để giao cho agent Antigravity |
+| Thiết kế | `docs/NGAY-THI.md`, `AGENTS.md`, 15 file trong `.agent/workflows/` (`00-khoi-dong`, A1 đến A5, B1 đến B6, C1 đến C3) | Lịch ngày thi và đặc tả từng bước để giao cho agent Antigravity |
 | Công cụ demo | `scripts/chrome-demo.ps1` | Mở Chrome riêng, trỏ 4 tên miền demo về `127.0.0.1`. Chỉ dựng môi trường demo, không có logic sản phẩm |
 | Tài liệu | `README.md` | Giới thiệu sản phẩm cho mentor và BTC; mục kết quả đo và video để trống, điền trong ngày thi |
 | Tài liệu | `docs/DEBUG-CHROME.md` | Cách debug extension trong Chrome |

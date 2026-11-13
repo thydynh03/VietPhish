@@ -29,7 +29,9 @@ Repo này là bài thi Mini Hackathon DevFest MienTrung 2026 của đội VietPh
 | --- | --- |
 | A | `extension/` |
 | B | `server/` |
-| C | `eval/`, `scripts/`, `demo-sites/`, `docs/` |
+| C | `eval/`, `scripts/`, `demo-sites/`, `docs/`. Ngoại lệ duy nhất: bước A4 (`.agent/workflows/a4-khoa-o-nhap.md`) do C làm, chỉ sửa `extension/content.js` |
+
+Ai làm bước nào, lúc nào: `docs/CHIA-TASK.md`.
 
 `docs/API.md` là hợp đồng giữa extension và server. Không ai sửa khi chưa báo cả đội.
 
