@@ -4,6 +4,17 @@ Tiện ích Chrome cảnh báo trang giả mạo ngân hàng và cơ quan nhà n
 
 Bài thi Mini Hackathon GDG DevFest MienTrung 2026, đội 3 người.
 
+## Bắt đầu từ đây
+
+Mới clone repo thì đọc theo thứ tự:
+
+1. [`docs/YEU-CAU.md`](docs/YEU-CAU.md): sản phẩm phải làm gì, thế nào là xong, cái gì không làm.
+2. [`docs/CHIA-TASK.md`](docs/CHIA-TASK.md): ai sở hữu file nào, ai báo ai, thứ tự cắt khi trễ.
+3. File của mình: [`docs/tasks/A.md`](docs/tasks/A.md) (extension), [`docs/tasks/B.md`](docs/tasks/B.md) (server, AI), [`docs/tasks/C.md`](docs/tasks/C.md) (dữ liệu, A4, video, nộp bài). Có sẵn câu lệnh dán vào agent cho từng bước.
+4. [`AGENTS.md`](AGENTS.md): quy tắc cho agent và quy tắc commit, PR (tiếng Anh).
+5. [`.agent/skills/vietphish/SKILL.md`](.agent/skills/vietphish/SKILL.md): kiến thức dự án cho agent: kiến trúc, cách chạy, các bẫy đã gặp.
+6. [`docs/KHAC-BIET.md`](docs/KHAC-BIET.md): khác gì ChongLuaDao và J2TEAM, lời video.
+
 ## Trạng thái hiện tại
 
 **Trước 07:30 ngày 14/11/2026, repo này chỉ là khung rỗng.** Server chỉ có `GET /health`, extension chỉ in "hello". Repo chứa dữ liệu, trang demo, hợp đồng API và đặc tả từng bước để giao cho agent. Toàn bộ logic phát hiện, giao diện cảnh báo và script đo được viết trong giờ thi.

@@ -1,51 +1,55 @@
-# Quy tắc cho agent làm việc trong repo này
+# Rules for agents working in this repo
 
-Repo này là bài thi Mini Hackathon DevFest MienTrung 2026 của đội VietPhish Lens. Thời gian build chỉ có 4 giờ. Ưu tiên số một là code chạy đúng ngay lần đầu, không phải code đẹp.
+This repo is team VietPhish Lens's entry for the GDG DevFest MienTrung 2026 Mini Hackathon. The build window is 4 hours. The first priority is code that works correctly the first time, not pretty code.
 
-## Cách làm việc
+New to the repo? Read in this order: `README.md` → `docs/YEU-CAU.md` (requirements) → `docs/CHIA-TASK.md` (who does what) → your own task file in `docs/tasks/`. Project knowledge for agents is in `.agent/skills/vietphish/SKILL.md`.
 
-1. Mỗi lần chỉ làm **một bước**, theo đúng một file trong `.agent/workflows/`. Đọc hết file đó trước khi viết dòng code đầu tiên.
-2. Chỉ tạo hoặc sửa những file ghi trong mục "File được sửa" của bước đó. Không đụng file khác, kể cả khi thấy có thể cải tiến.
-3. Làm đúng tên file, tên hàm, chữ ký hàm, hằng số và câu chữ tiếng Việt ghi trong bước. Không đổi tên, không "tối ưu", không gộp hay tách file.
-4. Viết xong thì chạy đúng các lệnh ở mục "Nghiệm thu". Chưa đạt thì sửa code cho tới khi đạt. Dán output thật của lệnh vào câu trả lời cuối. Không tự commit, xem mục "Commit" ở cuối file này.
-5. Test fail thì sửa **code**, không sửa test vector trong `server/test/vectors/`. Vector đã được kiểm chứng. Nếu tin chắc vector sai thì dừng lại và hỏi người.
-6. Gặp một lỗi mà sửa 2 lần chưa được thì dừng, báo rõ lỗi và những gì đã thử. Không thử lung tung quá 2 lần.
-7. Xong bước thì dừng. Không tự làm sang bước tiếp theo.
+## How to work
 
-## Ràng buộc kỹ thuật
+1. Do **one step** at a time, following exactly one file in `.agent/workflows/`. Read that whole file before writing the first line of code.
+2. Only create or modify the files listed in that step's "File được sửa" (files to modify) section. Do not touch any other file, even if you see a possible improvement.
+3. Use the exact file names, function names, signatures, constants and Vietnamese strings given in the step. Do not rename, "optimize", merge or split files.
+4. When done, run exactly the commands in the step's "Nghiệm thu" (acceptance) and "Tự kiểm trước khi báo xong" (self-check) sections that an agent can run. If they fail, fix the code until they pass. Paste the real command output in your final answer. Do not commit: see "Commit and pull request rules" below.
+5. If a test fails, fix the **code**. Never edit the test vectors in `server/test/vectors/`: they have been verified. If you are sure a vector is wrong, stop and ask a human.
+6. If one error survives 2 fix attempts, stop. Report the error and what you tried. Do not keep guessing.
+7. When the step is done, stop. Do not continue to the next step on your own.
 
-- JavaScript thuần, ES modules ở server (`"type": "module"`). Không TypeScript, không bundler, không framework, không Express.
-- Node >= 22 (script `node --test "test/*.test.js"` cần glob, có từ Node 21). Test bằng `node --test` có sẵn. Không thêm thư viện test.
-- Server chỉ dùng 3 dependency đã có trong `server/package.json`: `tldts`, `fastest-levenshtein`, `@google/genai`. **Không thêm dependency.** Không chạy `npm install <gói mới>`.
-- Extension là Chrome Manifest V3, script kiểu classic, không có bước build. Không dùng `import` hay `export` trong file của extension.
-- Import trong server luôn ghi đủ đuôi `.js`, ví dụ `import { reason } from "./reasons.js"`.
-- Đọc file JSON bằng `readFileSync(new URL("../data/x.json", import.meta.url), "utf8")`. Không dùng `__dirname`, không dùng `import ... assert { type: "json" }`.
-- File lưu UTF-8 không BOM. Chuỗi hiển thị và comment viết tiếng Việt có dấu. Tên biến và tên hàm bằng tiếng Anh.
-- API key chỉ đọc từ `process.env` ở server. Không ghi key vào bất kỳ file nào, không đưa key vào extension.
+## Technical constraints
 
-## Phân vùng thư mục
+- Plain JavaScript, ES modules on the server (`"type": "module"`). No TypeScript, no bundler, no framework, no Express.
+- Node >= 22 (`node --test "test/*.test.js"` needs glob support, added in Node 21). Test with the built-in `node --test`. Do not add a test library.
+- The server uses only the 3 dependencies already in `server/package.json`: `tldts`, `fastest-levenshtein`, `@google/genai`. **Do not add dependencies.** Never run `npm install <new package>`.
+- The extension is Chrome Manifest V3, classic scripts, no build step. No `import` or `export` in extension files.
+- Server imports always include the `.js` extension, for example `import { reason } from "./reasons.js"`.
+- Read JSON files with `readFileSync(new URL("../data/x.json", import.meta.url), "utf8")`. No `__dirname`, no `import ... assert { type: "json" }`.
+- Save files as UTF-8 without BOM. User-facing strings and code comments are Vietnamese with full diacritics. Variable and function names are English.
+- API keys are read only from `process.env` on the server. Never write a key into any file. Never put a key in the extension.
 
-| Người | Thư mục được sửa |
+## Folder ownership
+
+Two people never edit the same file in the same time window, so `git pull --rebase` always merges cleanly.
+
+| Person | Folders they may edit |
 | --- | --- |
 | A | `extension/` |
 | B | `server/` |
-| C | `eval/`, `scripts/`, `demo-sites/`, `docs/`. Ngoại lệ duy nhất: bước A4 (`.agent/workflows/a4-khoa-o-nhap.md`) do C làm, chỉ sửa `extension/content.js` |
+| C | `eval/`, `scripts/`, `demo-sites/`, `docs/`, `README.md`. Single exception: step A4 (`.agent/workflows/a4-khoa-o-nhap.md`) is done by C and edits only `extension/content.js` |
 
-Ai làm bước nào, lúc nào: `docs/CHIA-TASK.md`.
+Who does which step, and when: `docs/CHIA-TASK.md` and `docs/tasks/`.
 
-`docs/API.md` là hợp đồng giữa extension và server. Không ai sửa khi chưa báo cả đội.
+`docs/API.md` is the contract between the extension and the server. Nobody edits it without telling the whole team first.
 
-`shared/official_domains.json` là nguồn gốc của whitelist. Sửa file này thì phải chép sang `server/data/official_domains.json` và `extension/official_domains.json`.
+`shared/official_domains.json` is the source of the whitelist. If you change it, copy it to `server/data/official_domains.json` and `extension/official_domains.json` as well.
 
-## Lệnh hay dùng
+## Common commands
 
 ```bash
-cd server && npm test                 # chạy toàn bộ unit test
-cd server && node --test test/heuristics.test.js   # chạy một file test
-node demo-sites/serve.js              # 4 trang demo ở cổng 8080
+cd server && npm test                              # run all unit tests
+cd server && node --test test/heuristics.test.js   # run one test file
+node demo-sites/serve.js                           # 4 demo pages on port 8080
 ```
 
-Trên Windows PowerShell, đặt biến môi trường bằng `$env:TEN="gia-tri"` trước lệnh, không dùng cú pháp `TEN=gia-tri lệnh`.
+On Windows PowerShell, set environment variables with `$env:NAME="value"` before the command. The `NAME=value command` syntax does not work there.
 
 ## Commit and pull request rules
 
@@ -71,7 +75,7 @@ Trên Windows PowerShell, đặt biến môi trường bằng `$env:TEN="gia-tri
 - For a workflow step, use the exact message from the "Commit" section at the end of that step file, including the step tag, for example `feat(server): heuristic tên miền [B2]`. Do not rewrite or translate it.
 - For any other commit, write the subject in English, imperative mood, lowercase after the colon, no trailing period, at most 72 characters.
 - Add a body when the change is not obvious from the subject: what changed and why, one bullet per point.
-- One commit per logical change. Do not mix files from different owners (see "Phân vùng thư mục") in one commit.
+- One commit per logical change. Do not mix files from different owners (see "Folder ownership") in one commit.
 - Stage files by name, as listed in the step file. Do not use `git add .` or `git add -A`.
 - Never commit API keys, `.env` files or anything under `node_modules/`.
 

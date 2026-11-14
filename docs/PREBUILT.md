@@ -22,6 +22,7 @@ git diff pre-event..HEAD --stat      # khối lượng code viết trong ngày t
 | Khung rỗng | `server/src/index.js`, `server/package.json`, `server/package-lock.json` | Chỉ có `GET /health`. Khai 3 dependency `tldts`, `fastest-levenshtein`, `@google/genai` và script `npm test` |
 | Cấu hình | `server/.gcloudignore` | Danh sách file bỏ qua khi upload `server/` lên Cloud Run, đúng 5 dòng. Lệnh deploy B chạy tay trong ngày thi theo `.agent/workflows/b6-deploy-cloud-run.md`, key không vào repo |
 | Cấu hình | `package.json` ở gốc repo, `.gitignore` | Script tắt để chạy server, trang demo và test. `.gitignore` chặn `node_modules`, file `.env`, `*.env.yaml` chứa key, kết quả eval và file video |
+| Thiết kế | `docs/YEU-CAU.md`, `docs/tasks/A.md`, `B.md`, `C.md`, `.agent/skills/vietphish/SKILL.md` | Yêu cầu sản phẩm, việc và câu lệnh cho từng người, kiến thức dự án cho agent. Không có code |
 | Thiết kế | `docs/KHAC-BIET.md`, `docs/CHIA-TASK.md` | Kế hoạch điểm khác biệt so với ChongLuaDao và J2TEAM, và bảng chia việc ngày thi. Không có code |
 | Thiết kế | `docs/API.md` | Hợp đồng giữa extension và server |
 | Thiết kế | `docs/KE-HOACH.md` | Kế hoạch của đội |
