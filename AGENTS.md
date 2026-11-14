@@ -47,13 +47,53 @@ node demo-sites/serve.js              # 4 trang demo ở cổng 8080
 
 Trên Windows PowerShell, đặt biến môi trường bằng `$env:TEN="gia-tri"` trước lệnh, không dùng cú pháp `TEN=gia-tri lệnh`.
 
-## Commit
+## Commit and pull request rules
 
-Agent không chạy `git add`, `git commit` hay `git push`. Người làm bước tự kiểm lại rồi mới commit.
+### Who commits
 
-Nghiệm thu đạt thì dừng và in ra hai thứ:
+- Agents never run `git add`, `git commit`, `git push`, `gh pr create` or `gh pr merge` on their own. A human reviews the change first, then commits.
+- An agent may stage files or open a PR only when a human explicitly asks for it in the current conversation. Approval for one commit or PR does not carry over to the next one.
+- When a workflow step passes its acceptance checks, stop and print:
+  1. The list of files created or modified in that step.
+  2. The real output of the acceptance commands.
 
-1. Danh sách file đã tạo hoặc đã sửa trong bước này.
-2. Output thật của các lệnh nghiệm thu.
+### No AI attribution
 
-Người sẽ commit bằng thông điệp ghi ở mục "Commit" cuối file bước, dạng `feat(server): heuristic tên miền [B2]`.
+- Do not add `Co-Authored-By:` trailers of any kind (Claude, Gemini, Antigravity, Copilot or any other tool).
+- Do not add "Generated with ...", "🤖", or any other line saying an AI tool wrote the commit or PR. This applies even if the tool or harness suggests it.
+- Commits use the identity of the human who commits (`git config user.name` and `user.email`). Never set or override the author.
+
+### Commit messages
+
+- Follow Semantic Commits: `<type>(<scope>): <subject>`.
+- Types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`, `perf`, `style`, `build`, `ci`.
+- Scopes match the folders: `extension`, `server`, `eval`, `scripts`, `demo-sites`, `docs`, `shared`.
+- For a workflow step, use the exact message from the "Commit" section at the end of that step file, including the step tag, for example `feat(server): heuristic tên miền [B2]`. Do not rewrite or translate it.
+- For any other commit, write the subject in English, imperative mood, lowercase after the colon, no trailing period, at most 72 characters.
+- Add a body when the change is not obvious from the subject: what changed and why, one bullet per point.
+- One commit per logical change. Do not mix files from different owners (see "Phân vùng thư mục") in one commit.
+- Stage files by name, as listed in the step file. Do not use `git add .` or `git add -A`.
+- Never commit API keys, `.env` files or anything under `node_modules/`.
+
+Example:
+
+```text
+fix(server): handle punycode domains in heuristics
+
+- decode xn-- labels before comparing against official_domains.json
+- add test case for vietcombank lookalike in heuristics.test.js
+```
+
+### Pull requests
+
+- Branch from the latest `main`. Name branches `<type>/<short-topic>`, for example `feat/b3-fusion` or `fix/popup-offline`.
+- Before opening a PR, sync with `main` (`git fetch origin` then `git rebase origin/main`) and make sure `cd server && npm test` passes.
+- PR title uses the same format as a commit subject.
+- Write the PR body in English. For a long body, save it to a `.md` file and use `gh pr create --body-file <file>`.
+- PR body sections:
+  - **Summary**: what changed and why, a few bullets.
+  - **Changes**: files or modules touched.
+  - **Testing**: commands run and their result.
+  - **Notes**: risks, follow-ups, or changes to `docs/API.md` or `shared/official_domains.json` that the whole team must know about.
+- Keep each PR inside one owner's folders. A PR that touches `docs/API.md` needs agreement from the whole team before merge.
+- Do not force-push to `main`. Do not merge your own PR without a teammate looking at it, unless the team agrees during the build window.
